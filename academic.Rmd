@@ -1,0 +1,118 @@
+---
+title: "Minghe Wang's resume"
+author: Minghe Wang
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+#knit: pagedown::chrome_print
+---
+
+Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> mhwang219@outlook.com
+- <i class="fa fa-github"></i> [github.com/Minghe4419](https://github.com/Minghe4419)
+- <i class="fa fa-phone"></i> +1 929-2581856
+
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- Experienced in statistical analysis, statistical learning models, and optimization methods.
+
+- Highly skilled in R, Python, LaTeX, Matlab
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+{#title}
+--------------------------------------------------------------------------------
+
+### Currently searching for a PhD student position
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+#### New York University
+
+B.S. in Applied Mathematics, Minor: Computer Science
+
+New York, NY
+
+Sep.2020 - Jun.2024
+
+#### Columbia University
+
+M.S. in Biostatistics, Track: Public Health Data Science
+
+New York, NY
+
+Sep.2024 - Present
+
+
+Research Experience {data-icon="fa-laptop"}
+--------------------------------------------------------------------------------
+
+#### NYU EPIC Lab
+
+Research Assistant to Prof. Selcuk Sirin, NYU
+
+New York, NY
+
+May.2023 - Sep.2024
+
+- Cleaned data collected from 500+ Parental subjects with 463 survey questions of offsprings using Python
+- Analyzed 50+ moderated mediation models' statistical significance with different variables using SPSS
+- Investigated defects in data collection by estimating kernel density of 100+ variables using R
+- Analyze more than 500 ordinal data of the Academic Readiness Project using the Spearman Correlation Model in Python
+- Designed data entry system with 200+ variables using Google Sheets and Apps Script (JS), enhancing team data entry efficiency by 50%
+- Organized and analyzed data from 4 evaluators with 1000+ variables, conducted Inter-rater reliability tests using R, and authored the respective section in the paper
+- 	Contributed to a comprehensive literature review on Meta Analysis on Development of Younger Refugee/Immigration Generation, reviewed 100+ papers from peer-reviewed journals
+
+
+#### Technical University of Munich
+
+Topic: Bias Variance Trade-Off in Gradient Compression for Federated Learning
+
+Research Assistant to Prof. Antonia Wachter-Zeh, TUM
+
+Munich, Germany
+
+Jul.2023 - Sep.2023
+
+-	Innovatively increased the precision of the data compression by imposing unbiasedness with quantizers
+-	Selected TopK Sparsifier as locally biased quantizers and combined the gradients with weights, then sum the gradients to get an unbiased quantizer
+-	Simplified the problem into Quadratic Programming Function to get optimum weight and replace the uniform weight, which can significantly minimize the mean squared error
+-	Conducted Monte Carlo Simulation to obtain the expectation
+-	Completed 200+ hours of Python implementation, finished a 20-page research report, and delivered a PowerPoint presentation in front of TUM master and doctoral students
+
+
+Projects {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+#### Machine Learning Capstone Project
+
+Fundamental of Machine Learning
+
+May.2023
+
+::: concise
+-	Analyzed 50000*14 music data with K-means and DBSCAN and classified data into 9 genres
+-	Pre-processed data and factorized data to make the data more aligned 
+-	Used Linear Discriminant Analysis to reduce the dimension of data 
+-	Trained data with SVMs, Random Forests, and Neural Networks and evaluated their performance in predicting music genres with AUC score
+:::

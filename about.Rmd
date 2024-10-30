@@ -1,0 +1,17 @@
+---
+title: "About Me"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+### Personal Life
+
+I love my dog
+
+<img src="danbao.jpg" style="width:30%">
+
+### Academic Experience
+
+I' a first-year student at Columbia University Mailman School of Public Health M.S in Biostatistics

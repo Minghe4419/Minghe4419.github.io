@@ -17,4 +17,4 @@ navbar:
       href: https://www.linkedin.com/in/minghe-wang-510852236/
 output:
   html_document:
-    theme: cerulean
+    theme: cosmo

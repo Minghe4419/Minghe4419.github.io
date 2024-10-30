@@ -15,20 +15,12 @@ library(plotly)
 ```
 
 ```{r}
+data("ny_noaa")
 data("nyc_airbnb")
+ny_noaa = 
+  ny_noaa |> 
+  drop_na()
 
-nyc_airbnb = 
-  nyc_airbnb |> 
-  mutate(rating = review_scores_location / 2) |> 
-  select(
-    rating, neighbourhood_group, neighbourhood, 
-    room_type, lat, long, price) |> 
-  drop_na(rating) |> 
-  filter(
-    neighbourhood_group == "Manhattan", 
-    room_type == "Entire home/apt", 
-    price %in% 100:500
-  )
 ```
 
 Column {data-width=650}
@@ -63,10 +55,5 @@ nyc_airbnb |>
 ### Chart C
 
 ```{r}
-nyc_airbnb |> 
-  count(neighbourhood) |> 
-  mutate(neighbourhood = fct_reorder(neighbourhood, n)) |> 
-  plot_ly(
-    x = ~neighbourhood, y = ~n, 
-    type = "bar")
+
 ```

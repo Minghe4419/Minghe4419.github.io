@@ -9,6 +9,8 @@ output:
 # uncomment this line to produce HTML and PDF in RStudio:
 #knit: pagedown::chrome_print
 ---
+Aside
+================================================================================
 
 Contact Info {#contact}
 --------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-{#title}
+Minghe Wang{#title}
 --------------------------------------------------------------------------------
 
 ### Currently searching for a PhD student position
@@ -64,7 +66,7 @@ New York, NY
 Sep.2024 - Present
 
 
-Research Experience {data-icon="fa-laptop"}
+Research Experience {data-icon="fa-laptop fa-lg"}
 --------------------------------------------------------------------------------
 
 #### NYU EPIC Lab

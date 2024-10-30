@@ -1,4 +1,4 @@
-name: "Yay internet!"
+name: "setup website"
 output_dir: "."
 navbar:
   title: "Home"
@@ -15,4 +15,4 @@ navbar:
       href: https://www.linkedin.com/in/minghe-wang-510852236/
 output:
   html_document:
-    theme: cosmo
+    theme: cerulean

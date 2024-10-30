@@ -23,7 +23,7 @@ rest_inspec =
     score, violation_code, violation_description
   ) %>% 
   filter(
-    boro == "MANHATTAN",
+    boro == "MANHATTAN"
   )
 ```
 

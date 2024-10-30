@@ -15,3 +15,5 @@ I love my dog
 ### Academic Experience
 
 I' a first-year student at Columbia University Mailman School of Public Health M.S in Biostatistics
+
+More information can be found [here](academic.html).

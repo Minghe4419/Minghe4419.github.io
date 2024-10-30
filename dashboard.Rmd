@@ -15,12 +15,17 @@ library(plotly)
 ```
 
 ```{r}
-data("ny_noaa")
-data("nyc_airbnb")
-ny_noaa = 
-  ny_noaa |> 
-  drop_na()
-
+data("rest_inspec")
+rest_inspec =
+  rest_inspec %>% 
+  select(
+    boro, cuisine_description, inspection_date, inspection_type,
+    score, violation_code, violation_description
+  ) %>% 
+  filter(
+    boro == "MANHATTAN",
+    inspection_type == "Cycle Inspection / Initial Inspection"
+  )
 ```
 
 Column {data-width=650}
@@ -28,11 +33,12 @@ Column {data-width=650}
 
 ### Chart A
 
-```{r}
-nyc_airbnb |> 
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |> 
+```{r rest type's score distribution}
+rest_inspec |>
+  drop_na(violation_code) |>
+  mutate(cuisine_description = fct_reorder(cuisine_description, score)) |>
   plot_ly(
-    x = ~neighbourhood, y = ~price, color = ~neighbourhood,
+    x = ~cuisine_description, y = ~score, color = ~cuisine_description,
     type = "box", colors = "viridis")
 ```
 
@@ -42,18 +48,23 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-nyc_airbnb |> 
-  mutate(
-    text_label = 
-      str_c("Price: ", price, "\nNeighborhood: ", neighbourhood)) |> 
-  plot_ly(
-    x = ~lat, y = ~long, color = ~price, text = ~text_label,
-    type = "scatter", mode = "markers", alpha = 0.5
-  )
+# nyc_airbnb |> 
+#   mutate(
+#     text_label = 
+#       str_c("Price: ", price, "\nNeighborhood: ", neighbourhood)) |> 
+#   plot_ly(
+#     x = ~lat, y = ~long, color = ~price, text = ~text_label,
+#     type = "scatter", mode = "markers", alpha = 0.5
+#   )
 ```
 
 ### Chart C
 
-```{r}
-
+```{r rest_type frequency}
+rest_inspec |> 
+  count(cuisine_description) |> 
+  mutate(cuisine_description = fct_reorder(cuisine_description, n)) |> 
+  plot_ly(
+    x = ~cuisine_description, y = ~n, 
+    type = "bar")
 ```

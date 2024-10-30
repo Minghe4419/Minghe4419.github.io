@@ -19,12 +19,11 @@ data("rest_inspec")
 rest_inspec =
   rest_inspec %>% 
   select(
-    boro, cuisine_description, inspection_date, inspection_type,
+    dba, boro, cuisine_description, inspection_date, inspection_type,
     score, violation_code, violation_description
   ) %>% 
   filter(
     boro == "MANHATTAN",
-    inspection_type == "Cycle Inspection / Initial Inspection"
   )
 ```
 
@@ -33,13 +32,33 @@ Column {data-width=650}
 
 ### Chart A
 
-```{r rest type's score distribution}
+```{r rest_type_score_distribution}
 rest_inspec |>
   drop_na(violation_code) |>
+  filter(
+    inspection_type == "Cycle Inspection / Initial Inspection"
+    ) |>
   mutate(cuisine_description = fct_reorder(cuisine_description, score)) |>
   plot_ly(
     x = ~cuisine_description, y = ~score, color = ~cuisine_description,
-    type = "box", colors = "viridis")
+    type = "box", colors = "viridis") %>% 
+  layout(
+    title = "Score Distribution by Cuisine Type",
+    xaxis = list(
+      title = "Cuisine Description",
+      tickangle = -45,  # Rotate x-axis labels if they are too long
+      titlefont = list(size = 14),
+      tickfont = list(size = 10)
+    ),
+    yaxis = list(
+      title = "First Inspection Score",
+      titlefont = list(size = 14)
+    ),
+    legend = list(
+      title = list(text = "<b>Cuisine Types</b>"),  # Set legend title
+      font = list(size = 10)
+    )
+  )
 ```
 
 Column {data-width=350}
@@ -47,20 +66,50 @@ Column {data-width=350}
 
 ### Chart B
 
-```{r}
-# nyc_airbnb |> 
-#   mutate(
-#     text_label = 
-#       str_c("Price: ", price, "\nNeighborhood: ", neighbourhood)) |> 
-#   plot_ly(
-#     x = ~lat, y = ~long, color = ~price, text = ~text_label,
-#     type = "scatter", mode = "markers", alpha = 0.5
-#   )
+```{r initial_vs_reinspection_score_scatter}
+rest_inspec_wide <- rest_inspec %>%
+  # Create 'inspection_round' based on 'inspection_type'
+  mutate(inspection_round = case_when(
+    str_detect(inspection_type, "Initial Inspection") ~ "Initial Inspection",
+    str_detect(inspection_type, "Re-inspection") ~ "Re-inspection",
+    TRUE ~ NA_character_  # Assign NA to other types
+  )) %>%
+  # Filter out rows where 'inspection_round' is NA
+  filter(!is.na(inspection_round)) %>%
+  # Select relevant columns (include other identifiers as needed)
+  select(dba, inspection_round, score) %>%
+  # Group by 'business_id' and 'inspection_round' to handle multiple entries
+  group_by(dba, inspection_round) %>%
+  # Summarize 'score' (e.g., take the mean if multiple scores exist)
+  summarize(score = mean(score, na.rm = TRUE), .groups = 'drop') %>%
+  # Pivot the data wider to have 'inspection_round' values as column names
+  pivot_wider(
+    names_from = inspection_round,
+    values_from = score,
+    names_prefix = "Score_"
+  ) %>% 
+  janitor::clean_names()
+
+plot_ly(
+  data = rest_inspec_wide,
+  x = ~score_initial_inspection,
+  y = ~score_re_inspection,
+  type = 'scatter',
+  mode = 'markers',
+  text = ~paste("restuarant name:", dba),
+  hoverinfo = 'text'
+) %>%
+  layout(
+    title = "Initial Inspection vs. Re-inspection Scores",
+    xaxis = list(title = "Initial Inspection Score"),
+    yaxis = list(title = "Re-inspection Score"),
+    showlegend = FALSE
+  )
 ```
 
 ### Chart C
 
-```{r rest_type frequency}
+```{r rest_type_frequency}
 rest_inspec |> 
   count(cuisine_description) |> 
   mutate(cuisine_description = fct_reorder(cuisine_description, n)) |> 

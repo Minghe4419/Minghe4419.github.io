@@ -12,7 +12,7 @@ navbar:
     - icon: fa-envelope fa-lg
       href: mailto:<mw3845@cumc.columbia.edu>
     - icon: fa-github fa-lg
-      href: http://github.com/<Minghe4419>/
+      href: https://github.com/Minghe4419
     - icon: fa-linkedin fa-lg
       href: https://www.linkedin.com/in/minghe-wang-510852236/
 output:
